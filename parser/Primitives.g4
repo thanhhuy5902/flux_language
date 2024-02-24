@@ -8,10 +8,47 @@ TEXT_TYPE: 'text';
 BOOLEAN: 'true' | 'false';
 BOOLEAN_TYPE: 'boolean';
 
-NUMBER: '-'? [0-9]+('.'[0-9]*)?;
+
+//I want to add SI postfixes in number values. for example : 2k1 = 2001, 2M2K = 2002000, 4K5.12 = 4500.12
+//the number can be negative or positive, decimal or integer
+
+//NUMBER
+//    : (SIGN)* (INT_PART ('.' FRAC_PART)? | FRAC_PART) (UNIT)*
+//    ;
+//
+//SIGN
+//    : '+' | '-'
+//    ;
+//
+//INT_PART
+//    : DIGIT+
+//    ;
+//
+DIGIT
+    : [0-9]
+    ;
+
+//FRAC_PART
+//    : DIGIT+
+//    ;
+//
+//UNIT
+//    : (SI_PREFIX | COMPOUND_UNIT)
+//    ;
+//
+//
+//SI_PREFIX
+//    : 'k' | 'M' | 'G' | 'T' | 'P' | 'E' | 'Z' | 'Y' | 'h' | 'da' | 'd' | 'c' | 'a' | 'f' | 'p' | 'n'
+//    ;
+//
+//COMPOUND_UNIT
+//    : UNIT { ! (pred: what { $text[$t.startIndex..$t.stopIndex] =~ "/" }) } ('/' UNIT)*
+//    ;
 NUMBER_TYPE: 'num';
 
-DIGIT: [0-9];
+
+
+
 OCTET
     : '0'
     | ([1-9] DIGIT?) // 1 to 99

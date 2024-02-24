@@ -1,10 +1,13 @@
 ### Prposal code
 ### Kiểu dữ liệu nguyên thủy
-##
+1. Số : các giá trị dạng số bất kỳ số nguyên hoặc số thực
+2. Văn bản : Chuỗi ký tự
+3. Gía trị luận lý: Nhận các giá trị true hoặc false
+4. IPv4: Nhận các giá trị địa chỉ IP
 
-example
+### 
 
-syntax
+
 ## Nguyên tắc đặt tên biến:
 
 1. Phải bắt đầu từ một chữ cái thường
