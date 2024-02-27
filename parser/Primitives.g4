@@ -9,41 +9,25 @@ BOOLEAN: 'true' | 'false';
 BOOLEAN_TYPE: 'boolean';
 
 
-//I want to add SI postfixes in number values. for example : 2k1 = 2001, 2M2K = 2002000, 4K5.12 = 4500.12
+//I want to add SI postfixes in number values. for example : 2k1 = 2001, 2M2K = 20002000, 4K5.12 = 4500.12
 //the number can be negative or positive, decimal or integer
-
-//NUMBER
-//    : (SIGN)* (INT_PART ('.' FRAC_PART)? | FRAC_PART) (UNIT)*
-//    ;
-//
-//SIGN
-//    : '+' | '-'
-//    ;
-//
-//INT_PART
-//    : DIGIT+
-//    ;
-//
 DIGIT
     : [0-9]
     ;
 
-//FRAC_PART
-//    : DIGIT+
-//    ;
-//
-//UNIT
-//    : (SI_PREFIX | COMPOUND_UNIT)
-//    ;
-//
-//
-//SI_PREFIX
-//    : 'k' | 'M' | 'G' | 'T' | 'P' | 'E' | 'Z' | 'Y' | 'h' | 'da' | 'd' | 'c' | 'a' | 'f' | 'p' | 'n'
-//    ;
-//
-//COMPOUND_UNIT
-//    : UNIT { ! (pred: what { $text[$t.startIndex..$t.stopIndex] =~ "/" }) } ('/' UNIT)*
-//    ;
+NUMBER: '-'? (DIGIT+
+            | DIGIT+ '.' DIGIT+
+            | DIGIT+ '.' DIGIT+ SI_POSTFIX?
+            | DIGIT+ SI_POSTFIX?
+            | DIGIT + SI_POSTFIX + DIGIT?
+            | DIGIT + SI_POSTFIX + DIGIT + SI_POSTFIX?
+            | DIGIT + SI_POSTFIX + DIGIT + SI_POSTFIX + DIGIT?
+            );
+
+UNIT: (NUMBER + SI_POSTFIX) | (NUMBER + SI_POSTFIX + NUMBER);
+
+SI_POSTFIX: 'K' | 'M' | 'G' | 'T' | 'P' | 'E' | 'Z' | 'Y' | 'k' | 'm' | 'g' | 't' | 'p' | 'e' | 'z' | 'y';
+
 NUMBER_TYPE: 'num';
 
 
