@@ -18,7 +18,6 @@ VD: 2K23( ={2023} ),  2M16 ( ={200000016} ), 200, -13, -2k3, 1.39,  -2.16, 2.000
 
 
 ## Nguyên tắc đặt tên biến:
-
 1. Phải bắt đầu từ một chữ cái thường
 2. không được chứa khoản trắng
 3. không trùng với các từ khóa

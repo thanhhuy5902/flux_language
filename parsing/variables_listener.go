@@ -31,6 +31,9 @@ type VariablesListener interface {
 	// EnterIpv4_var_declaration is called when entering the ipv4_var_declaration production.
 	EnterIpv4_var_declaration(c *Ipv4_var_declarationContext)
 
+	// EnterArray_var_declaration is called when entering the array_var_declaration production.
+	EnterArray_var_declaration(c *Array_var_declarationContext)
+
 	// EnterVar_declaration is called when entering the var_declaration production.
 	EnterVar_declaration(c *Var_declarationContext)
 
@@ -57,6 +60,9 @@ type VariablesListener interface {
 
 	// ExitIpv4_var_declaration is called when exiting the ipv4_var_declaration production.
 	ExitIpv4_var_declaration(c *Ipv4_var_declarationContext)
+
+	// ExitArray_var_declaration is called when exiting the array_var_declaration production.
+	ExitArray_var_declaration(c *Array_var_declarationContext)
 
 	// ExitVar_declaration is called when exiting the var_declaration production.
 	ExitVar_declaration(c *Var_declarationContext)

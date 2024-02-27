@@ -68,6 +68,12 @@ func (s *BaseVariablesListener) EnterIpv4_var_declaration(ctx *Ipv4_var_declarat
 // ExitIpv4_var_declaration is called when production ipv4_var_declaration is exited.
 func (s *BaseVariablesListener) ExitIpv4_var_declaration(ctx *Ipv4_var_declarationContext) {}
 
+// EnterArray_var_declaration is called when production array_var_declaration is entered.
+func (s *BaseVariablesListener) EnterArray_var_declaration(ctx *Array_var_declarationContext) {}
+
+// ExitArray_var_declaration is called when production array_var_declaration is exited.
+func (s *BaseVariablesListener) ExitArray_var_declaration(ctx *Array_var_declarationContext) {}
+
 // EnterVar_declaration is called when production var_declaration is entered.
 func (s *BaseVariablesListener) EnterVar_declaration(ctx *Var_declarationContext) {}
 

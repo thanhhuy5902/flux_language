@@ -32,45 +32,51 @@ var VariablesParserStaticData struct {
 func variablesParserInit() {
 	staticData := &VariablesParserStaticData
 	staticData.LiteralNames = []string{
-		"", "", "'text'", "", "'boolean'", "", "'num'", "", "", "", "'ipv4'",
-		"", "", "", "", "'{'", "'}'", "'@'",
+		"", "", "'text'", "", "'boolean'", "", "", "", "", "'num'", "", "",
+		"'ipv4'", "", "", "", "", "'{'", "'}'", "'@'",
 	}
 	staticData.SymbolicNames = []string{
-		"", "TEXT", "TEXT_TYPE", "BOOLEAN", "BOOLEAN_TYPE", "NUMBER", "NUMBER_TYPE",
-		"DIGIT", "OCTET", "IPV4", "IPV4_TYPE", "VAR_IDENTIFIER", "COMMON_IDENTIFIER",
-		"ARITHMETIC_OPERATOR", "LOGICAL_OPERATOR", "L_BLOCK", "R_BLOCK", "AT",
-		"WS",
+		"", "TEXT", "TEXT_TYPE", "BOOLEAN", "BOOLEAN_TYPE", "DIGIT", "NUMBER",
+		"UNIT", "SI_POSTFIX", "NUMBER_TYPE", "OCTET", "IPV4", "IPV4_TYPE", "VAR_IDENTIFIER",
+		"COMMON_IDENTIFIER", "ARITHMETIC_OPERATOR", "LOGICAL_OPERATOR", "L_BLOCK",
+		"R_BLOCK", "AT", "WS", "ARRAY_TYPE", "L_BRACKET", "COMMA", "R_BRACKET",
 	}
 	staticData.RuleNames = []string{
 		"var_type", "var_name", "var_value", "default_var_declaration", "text_var_declaration",
 		"number_var_declaration", "boolean_var_declaration", "ipv4_var_declaration",
-		"var_declaration",
+		"array_var_declaration", "var_declaration",
 	}
 	staticData.PredictionContextCache = antlr.NewPredictionContextCache()
 	staticData.serializedATN = []int32{
-		4, 1, 18, 61, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
-		4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 1, 0, 1, 0, 1, 1, 1,
-		1, 1, 2, 1, 2, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 4, 1, 4, 1, 4, 1, 4, 1,
-		4, 1, 4, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 6, 1, 6, 1, 6, 1, 6, 1,
-		6, 1, 6, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 8, 1, 8, 1, 8, 1, 8, 1,
-		8, 3, 8, 59, 8, 8, 1, 8, 0, 0, 9, 0, 2, 4, 6, 8, 10, 12, 14, 16, 0, 2,
-		4, 0, 2, 2, 4, 4, 6, 6, 10, 10, 4, 0, 1, 1, 3, 3, 5, 5, 9, 9, 55, 0, 18,
-		1, 0, 0, 0, 2, 20, 1, 0, 0, 0, 4, 22, 1, 0, 0, 0, 6, 24, 1, 0, 0, 0, 8,
-		29, 1, 0, 0, 0, 10, 35, 1, 0, 0, 0, 12, 41, 1, 0, 0, 0, 14, 47, 1, 0, 0,
-		0, 16, 58, 1, 0, 0, 0, 18, 19, 7, 0, 0, 0, 19, 1, 1, 0, 0, 0, 20, 21, 5,
-		11, 0, 0, 21, 3, 1, 0, 0, 0, 22, 23, 7, 1, 0, 0, 23, 5, 1, 0, 0, 0, 24,
-		25, 3, 0, 0, 0, 25, 26, 3, 2, 1, 0, 26, 27, 5, 15, 0, 0, 27, 28, 5, 16,
-		0, 0, 28, 7, 1, 0, 0, 0, 29, 30, 5, 2, 0, 0, 30, 31, 3, 2, 1, 0, 31, 32,
-		5, 15, 0, 0, 32, 33, 5, 1, 0, 0, 33, 34, 5, 16, 0, 0, 34, 9, 1, 0, 0, 0,
-		35, 36, 5, 6, 0, 0, 36, 37, 3, 2, 1, 0, 37, 38, 5, 15, 0, 0, 38, 39, 5,
-		5, 0, 0, 39, 40, 5, 16, 0, 0, 40, 11, 1, 0, 0, 0, 41, 42, 5, 4, 0, 0, 42,
-		43, 3, 2, 1, 0, 43, 44, 5, 15, 0, 0, 44, 45, 5, 3, 0, 0, 45, 46, 5, 16,
-		0, 0, 46, 13, 1, 0, 0, 0, 47, 48, 5, 10, 0, 0, 48, 49, 3, 2, 1, 0, 49,
-		50, 5, 15, 0, 0, 50, 51, 5, 9, 0, 0, 51, 52, 5, 16, 0, 0, 52, 15, 1, 0,
-		0, 0, 53, 59, 3, 6, 3, 0, 54, 59, 3, 8, 4, 0, 55, 59, 3, 10, 5, 0, 56,
-		59, 3, 12, 6, 0, 57, 59, 3, 14, 7, 0, 58, 53, 1, 0, 0, 0, 58, 54, 1, 0,
-		0, 0, 58, 55, 1, 0, 0, 0, 58, 56, 1, 0, 0, 0, 58, 57, 1, 0, 0, 0, 59, 17,
-		1, 0, 0, 0, 1, 58,
+		4, 1, 24, 77, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
+		4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 2, 9, 7, 9, 1, 0, 1,
+		0, 1, 1, 1, 1, 1, 2, 1, 2, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 4, 1, 4, 1,
+		4, 1, 4, 1, 4, 1, 4, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 6, 1, 6, 1,
+		6, 1, 6, 1, 6, 1, 6, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 8, 1, 8, 1,
+		8, 1, 8, 1, 8, 1, 8, 5, 8, 62, 8, 8, 10, 8, 12, 8, 65, 9, 8, 1, 8, 1, 8,
+		1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 3, 9, 75, 8, 9, 1, 9, 0, 0, 10, 0,
+		2, 4, 6, 8, 10, 12, 14, 16, 18, 0, 2, 5, 0, 2, 2, 4, 4, 9, 9, 12, 12, 21,
+		21, 4, 0, 1, 1, 3, 3, 6, 6, 11, 11, 72, 0, 20, 1, 0, 0, 0, 2, 22, 1, 0,
+		0, 0, 4, 24, 1, 0, 0, 0, 6, 26, 1, 0, 0, 0, 8, 31, 1, 0, 0, 0, 10, 37,
+		1, 0, 0, 0, 12, 43, 1, 0, 0, 0, 14, 49, 1, 0, 0, 0, 16, 55, 1, 0, 0, 0,
+		18, 74, 1, 0, 0, 0, 20, 21, 7, 0, 0, 0, 21, 1, 1, 0, 0, 0, 22, 23, 5, 13,
+		0, 0, 23, 3, 1, 0, 0, 0, 24, 25, 7, 1, 0, 0, 25, 5, 1, 0, 0, 0, 26, 27,
+		3, 0, 0, 0, 27, 28, 3, 2, 1, 0, 28, 29, 5, 17, 0, 0, 29, 30, 5, 18, 0,
+		0, 30, 7, 1, 0, 0, 0, 31, 32, 5, 2, 0, 0, 32, 33, 3, 2, 1, 0, 33, 34, 5,
+		17, 0, 0, 34, 35, 5, 1, 0, 0, 35, 36, 5, 18, 0, 0, 36, 9, 1, 0, 0, 0, 37,
+		38, 5, 9, 0, 0, 38, 39, 3, 2, 1, 0, 39, 40, 5, 17, 0, 0, 40, 41, 5, 6,
+		0, 0, 41, 42, 5, 18, 0, 0, 42, 11, 1, 0, 0, 0, 43, 44, 5, 4, 0, 0, 44,
+		45, 3, 2, 1, 0, 45, 46, 5, 17, 0, 0, 46, 47, 5, 3, 0, 0, 47, 48, 5, 18,
+		0, 0, 48, 13, 1, 0, 0, 0, 49, 50, 5, 12, 0, 0, 50, 51, 3, 2, 1, 0, 51,
+		52, 5, 17, 0, 0, 52, 53, 5, 11, 0, 0, 53, 54, 5, 18, 0, 0, 54, 15, 1, 0,
+		0, 0, 55, 56, 5, 21, 0, 0, 56, 57, 3, 2, 1, 0, 57, 58, 5, 22, 0, 0, 58,
+		63, 3, 4, 2, 0, 59, 60, 5, 23, 0, 0, 60, 62, 3, 4, 2, 0, 61, 59, 1, 0,
+		0, 0, 62, 65, 1, 0, 0, 0, 63, 61, 1, 0, 0, 0, 63, 64, 1, 0, 0, 0, 64, 66,
+		1, 0, 0, 0, 65, 63, 1, 0, 0, 0, 66, 67, 5, 24, 0, 0, 67, 17, 1, 0, 0, 0,
+		68, 75, 3, 6, 3, 0, 69, 75, 3, 8, 4, 0, 70, 75, 3, 10, 5, 0, 71, 75, 3,
+		12, 6, 0, 72, 75, 3, 14, 7, 0, 73, 75, 3, 16, 8, 0, 74, 68, 1, 0, 0, 0,
+		74, 69, 1, 0, 0, 0, 74, 70, 1, 0, 0, 0, 74, 71, 1, 0, 0, 0, 74, 72, 1,
+		0, 0, 0, 74, 73, 1, 0, 0, 0, 75, 19, 1, 0, 0, 0, 2, 63, 74,
 	}
 	deserializer := antlr.NewATNDeserializer(nil)
 	staticData.atn = deserializer.Deserialize(staticData.serializedATN)
@@ -113,20 +119,26 @@ const (
 	VariablesTEXT_TYPE           = 2
 	VariablesBOOLEAN             = 3
 	VariablesBOOLEAN_TYPE        = 4
-	VariablesNUMBER              = 5
-	VariablesNUMBER_TYPE         = 6
-	VariablesDIGIT               = 7
-	VariablesOCTET               = 8
-	VariablesIPV4                = 9
-	VariablesIPV4_TYPE           = 10
-	VariablesVAR_IDENTIFIER      = 11
-	VariablesCOMMON_IDENTIFIER   = 12
-	VariablesARITHMETIC_OPERATOR = 13
-	VariablesLOGICAL_OPERATOR    = 14
-	VariablesL_BLOCK             = 15
-	VariablesR_BLOCK             = 16
-	VariablesAT                  = 17
-	VariablesWS                  = 18
+	VariablesDIGIT               = 5
+	VariablesNUMBER              = 6
+	VariablesUNIT                = 7
+	VariablesSI_POSTFIX          = 8
+	VariablesNUMBER_TYPE         = 9
+	VariablesOCTET               = 10
+	VariablesIPV4                = 11
+	VariablesIPV4_TYPE           = 12
+	VariablesVAR_IDENTIFIER      = 13
+	VariablesCOMMON_IDENTIFIER   = 14
+	VariablesARITHMETIC_OPERATOR = 15
+	VariablesLOGICAL_OPERATOR    = 16
+	VariablesL_BLOCK             = 17
+	VariablesR_BLOCK             = 18
+	VariablesAT                  = 19
+	VariablesWS                  = 20
+	VariablesARRAY_TYPE          = 21
+	VariablesL_BRACKET           = 22
+	VariablesCOMMA               = 23
+	VariablesR_BRACKET           = 24
 )
 
 // Variables rules.
@@ -139,7 +151,8 @@ const (
 	VariablesRULE_number_var_declaration  = 5
 	VariablesRULE_boolean_var_declaration = 6
 	VariablesRULE_ipv4_var_declaration    = 7
-	VariablesRULE_var_declaration         = 8
+	VariablesRULE_array_var_declaration   = 8
+	VariablesRULE_var_declaration         = 9
 )
 
 // IVar_typeContext is an interface to support dynamic dispatch.
@@ -154,6 +167,7 @@ type IVar_typeContext interface {
 	NUMBER_TYPE() antlr.TerminalNode
 	BOOLEAN_TYPE() antlr.TerminalNode
 	IPV4_TYPE() antlr.TerminalNode
+	ARRAY_TYPE() antlr.TerminalNode
 
 	// IsVar_typeContext differentiates from other interfaces.
 	IsVar_typeContext()
@@ -207,6 +221,10 @@ func (s *Var_typeContext) IPV4_TYPE() antlr.TerminalNode {
 	return s.GetToken(VariablesIPV4_TYPE, 0)
 }
 
+func (s *Var_typeContext) ARRAY_TYPE() antlr.TerminalNode {
+	return s.GetToken(VariablesARRAY_TYPE, 0)
+}
+
 func (s *Var_typeContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
@@ -234,10 +252,10 @@ func (p *Variables) Var_type() (localctx IVar_typeContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(18)
+		p.SetState(20)
 		_la = p.GetTokenStream().LA(1)
 
-		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&1108) != 0) {
+		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&2101780) != 0) {
 			p.GetErrorHandler().RecoverInline(p)
 		} else {
 			p.GetErrorHandler().ReportMatch(p)
@@ -333,7 +351,7 @@ func (p *Variables) Var_name() (localctx IVar_nameContext) {
 	p.EnterRule(localctx, 2, VariablesRULE_var_name)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(20)
+		p.SetState(22)
 		p.Match(VariablesVAR_IDENTIFIER)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -446,10 +464,10 @@ func (p *Variables) Var_value() (localctx IVar_valueContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(22)
+		p.SetState(24)
 		_la = p.GetTokenStream().LA(1)
 
-		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&554) != 0) {
+		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&2122) != 0) {
 			p.GetErrorHandler().RecoverInline(p)
 		} else {
 			p.GetErrorHandler().ReportMatch(p)
@@ -584,15 +602,15 @@ func (p *Variables) Default_var_declaration() (localctx IDefault_var_declaration
 	p.EnterRule(localctx, 6, VariablesRULE_default_var_declaration)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(24)
+		p.SetState(26)
 		p.Var_type()
 	}
 	{
-		p.SetState(25)
+		p.SetState(27)
 		p.Var_name()
 	}
 	{
-		p.SetState(26)
+		p.SetState(28)
 		p.Match(VariablesL_BLOCK)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -600,7 +618,7 @@ func (p *Variables) Default_var_declaration() (localctx IDefault_var_declaration
 		}
 	}
 	{
-		p.SetState(27)
+		p.SetState(29)
 		p.Match(VariablesR_BLOCK)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -728,7 +746,7 @@ func (p *Variables) Text_var_declaration() (localctx IText_var_declarationContex
 	p.EnterRule(localctx, 8, VariablesRULE_text_var_declaration)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(29)
+		p.SetState(31)
 		p.Match(VariablesTEXT_TYPE)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -736,11 +754,11 @@ func (p *Variables) Text_var_declaration() (localctx IText_var_declarationContex
 		}
 	}
 	{
-		p.SetState(30)
+		p.SetState(32)
 		p.Var_name()
 	}
 	{
-		p.SetState(31)
+		p.SetState(33)
 		p.Match(VariablesL_BLOCK)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -748,7 +766,7 @@ func (p *Variables) Text_var_declaration() (localctx IText_var_declarationContex
 		}
 	}
 	{
-		p.SetState(32)
+		p.SetState(34)
 		p.Match(VariablesTEXT)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -756,7 +774,7 @@ func (p *Variables) Text_var_declaration() (localctx IText_var_declarationContex
 		}
 	}
 	{
-		p.SetState(33)
+		p.SetState(35)
 		p.Match(VariablesR_BLOCK)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -884,7 +902,7 @@ func (p *Variables) Number_var_declaration() (localctx INumber_var_declarationCo
 	p.EnterRule(localctx, 10, VariablesRULE_number_var_declaration)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(35)
+		p.SetState(37)
 		p.Match(VariablesNUMBER_TYPE)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -892,11 +910,11 @@ func (p *Variables) Number_var_declaration() (localctx INumber_var_declarationCo
 		}
 	}
 	{
-		p.SetState(36)
+		p.SetState(38)
 		p.Var_name()
 	}
 	{
-		p.SetState(37)
+		p.SetState(39)
 		p.Match(VariablesL_BLOCK)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -904,7 +922,7 @@ func (p *Variables) Number_var_declaration() (localctx INumber_var_declarationCo
 		}
 	}
 	{
-		p.SetState(38)
+		p.SetState(40)
 		p.Match(VariablesNUMBER)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -912,7 +930,7 @@ func (p *Variables) Number_var_declaration() (localctx INumber_var_declarationCo
 		}
 	}
 	{
-		p.SetState(39)
+		p.SetState(41)
 		p.Match(VariablesR_BLOCK)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1040,7 +1058,7 @@ func (p *Variables) Boolean_var_declaration() (localctx IBoolean_var_declaration
 	p.EnterRule(localctx, 12, VariablesRULE_boolean_var_declaration)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(41)
+		p.SetState(43)
 		p.Match(VariablesBOOLEAN_TYPE)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1048,11 +1066,11 @@ func (p *Variables) Boolean_var_declaration() (localctx IBoolean_var_declaration
 		}
 	}
 	{
-		p.SetState(42)
+		p.SetState(44)
 		p.Var_name()
 	}
 	{
-		p.SetState(43)
+		p.SetState(45)
 		p.Match(VariablesL_BLOCK)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1060,7 +1078,7 @@ func (p *Variables) Boolean_var_declaration() (localctx IBoolean_var_declaration
 		}
 	}
 	{
-		p.SetState(44)
+		p.SetState(46)
 		p.Match(VariablesBOOLEAN)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1068,7 +1086,7 @@ func (p *Variables) Boolean_var_declaration() (localctx IBoolean_var_declaration
 		}
 	}
 	{
-		p.SetState(45)
+		p.SetState(47)
 		p.Match(VariablesR_BLOCK)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1196,7 +1214,7 @@ func (p *Variables) Ipv4_var_declaration() (localctx IIpv4_var_declarationContex
 	p.EnterRule(localctx, 14, VariablesRULE_ipv4_var_declaration)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(47)
+		p.SetState(49)
 		p.Match(VariablesIPV4_TYPE)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1204,11 +1222,11 @@ func (p *Variables) Ipv4_var_declaration() (localctx IIpv4_var_declarationContex
 		}
 	}
 	{
-		p.SetState(48)
+		p.SetState(50)
 		p.Var_name()
 	}
 	{
-		p.SetState(49)
+		p.SetState(51)
 		p.Match(VariablesL_BLOCK)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1216,7 +1234,7 @@ func (p *Variables) Ipv4_var_declaration() (localctx IIpv4_var_declarationContex
 		}
 	}
 	{
-		p.SetState(50)
+		p.SetState(52)
 		p.Match(VariablesIPV4)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1224,8 +1242,238 @@ func (p *Variables) Ipv4_var_declaration() (localctx IIpv4_var_declarationContex
 		}
 	}
 	{
-		p.SetState(51)
+		p.SetState(53)
 		p.Match(VariablesR_BLOCK)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
+	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
+}
+
+// IArray_var_declarationContext is an interface to support dynamic dispatch.
+type IArray_var_declarationContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// Getter signatures
+	ARRAY_TYPE() antlr.TerminalNode
+	Var_name() IVar_nameContext
+	L_BRACKET() antlr.TerminalNode
+	AllVar_value() []IVar_valueContext
+	Var_value(i int) IVar_valueContext
+	R_BRACKET() antlr.TerminalNode
+	AllCOMMA() []antlr.TerminalNode
+	COMMA(i int) antlr.TerminalNode
+
+	// IsArray_var_declarationContext differentiates from other interfaces.
+	IsArray_var_declarationContext()
+}
+
+type Array_var_declarationContext struct {
+	antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyArray_var_declarationContext() *Array_var_declarationContext {
+	var p = new(Array_var_declarationContext)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = VariablesRULE_array_var_declaration
+	return p
+}
+
+func InitEmptyArray_var_declarationContext(p *Array_var_declarationContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = VariablesRULE_array_var_declaration
+}
+
+func (*Array_var_declarationContext) IsArray_var_declarationContext() {}
+
+func NewArray_var_declarationContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *Array_var_declarationContext {
+	var p = new(Array_var_declarationContext)
+
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = VariablesRULE_array_var_declaration
+
+	return p
+}
+
+func (s *Array_var_declarationContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *Array_var_declarationContext) ARRAY_TYPE() antlr.TerminalNode {
+	return s.GetToken(VariablesARRAY_TYPE, 0)
+}
+
+func (s *Array_var_declarationContext) Var_name() IVar_nameContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IVar_nameContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IVar_nameContext)
+}
+
+func (s *Array_var_declarationContext) L_BRACKET() antlr.TerminalNode {
+	return s.GetToken(VariablesL_BRACKET, 0)
+}
+
+func (s *Array_var_declarationContext) AllVar_value() []IVar_valueContext {
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IVar_valueContext); ok {
+			len++
+		}
+	}
+
+	tst := make([]IVar_valueContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IVar_valueContext); ok {
+			tst[i] = t.(IVar_valueContext)
+			i++
+		}
+	}
+
+	return tst
+}
+
+func (s *Array_var_declarationContext) Var_value(i int) IVar_valueContext {
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IVar_valueContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IVar_valueContext)
+}
+
+func (s *Array_var_declarationContext) R_BRACKET() antlr.TerminalNode {
+	return s.GetToken(VariablesR_BRACKET, 0)
+}
+
+func (s *Array_var_declarationContext) AllCOMMA() []antlr.TerminalNode {
+	return s.GetTokens(VariablesCOMMA)
+}
+
+func (s *Array_var_declarationContext) COMMA(i int) antlr.TerminalNode {
+	return s.GetToken(VariablesCOMMA, i)
+}
+
+func (s *Array_var_declarationContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Array_var_declarationContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *Array_var_declarationContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(VariablesListener); ok {
+		listenerT.EnterArray_var_declaration(s)
+	}
+}
+
+func (s *Array_var_declarationContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(VariablesListener); ok {
+		listenerT.ExitArray_var_declaration(s)
+	}
+}
+
+func (p *Variables) Array_var_declaration() (localctx IArray_var_declarationContext) {
+	localctx = NewArray_var_declarationContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 16, VariablesRULE_array_var_declaration)
+	var _la int
+
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(55)
+		p.Match(VariablesARRAY_TYPE)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+	{
+		p.SetState(56)
+		p.Var_name()
+	}
+	{
+		p.SetState(57)
+		p.Match(VariablesL_BRACKET)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+	{
+		p.SetState(58)
+		p.Var_value()
+	}
+	p.SetState(63)
+	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
+	_la = p.GetTokenStream().LA(1)
+
+	for _la == VariablesCOMMA {
+		{
+			p.SetState(59)
+			p.Match(VariablesCOMMA)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+		{
+			p.SetState(60)
+			p.Var_value()
+		}
+
+		p.SetState(65)
+		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
+		_la = p.GetTokenStream().LA(1)
+	}
+	{
+		p.SetState(66)
+		p.Match(VariablesR_BRACKET)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -1258,6 +1506,7 @@ type IVar_declarationContext interface {
 	Number_var_declaration() INumber_var_declarationContext
 	Boolean_var_declaration() IBoolean_var_declarationContext
 	Ipv4_var_declaration() IIpv4_var_declarationContext
+	Array_var_declaration() IArray_var_declarationContext
 
 	// IsVar_declarationContext differentiates from other interfaces.
 	IsVar_declarationContext()
@@ -1375,6 +1624,22 @@ func (s *Var_declarationContext) Ipv4_var_declaration() IIpv4_var_declarationCon
 	return t.(IIpv4_var_declarationContext)
 }
 
+func (s *Var_declarationContext) Array_var_declaration() IArray_var_declarationContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IArray_var_declarationContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IArray_var_declarationContext)
+}
+
 func (s *Var_declarationContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
@@ -1397,47 +1662,54 @@ func (s *Var_declarationContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *Variables) Var_declaration() (localctx IVar_declarationContext) {
 	localctx = NewVar_declarationContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 16, VariablesRULE_var_declaration)
-	p.SetState(58)
+	p.EnterRule(localctx, 18, VariablesRULE_var_declaration)
+	p.SetState(74)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 
-	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 0, p.GetParserRuleContext()) {
+	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 1, p.GetParserRuleContext()) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(53)
+			p.SetState(68)
 			p.Default_var_declaration()
 		}
 
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(54)
+			p.SetState(69)
 			p.Text_var_declaration()
 		}
 
 	case 3:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(55)
+			p.SetState(70)
 			p.Number_var_declaration()
 		}
 
 	case 4:
 		p.EnterOuterAlt(localctx, 4)
 		{
-			p.SetState(56)
+			p.SetState(71)
 			p.Boolean_var_declaration()
 		}
 
 	case 5:
 		p.EnterOuterAlt(localctx, 5)
 		{
-			p.SetState(57)
+			p.SetState(72)
 			p.Ipv4_var_declaration()
+		}
+
+	case 6:
+		p.EnterOuterAlt(localctx, 6)
+		{
+			p.SetState(73)
+			p.Array_var_declaration()
 		}
 
 	case antlr.ATNInvalidAltNumber:

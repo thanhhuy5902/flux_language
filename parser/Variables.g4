@@ -8,6 +8,7 @@ var_type
     |NUMBER_TYPE
     |BOOLEAN_TYPE
     |IPV4_TYPE
+    |ARRAY_TYPE
     ;
 
 var_name
@@ -19,6 +20,7 @@ var_value
     |TEXT
     |NUMBER
     |BOOLEAN
+
     ;
 
 default_var_declaration
@@ -43,12 +45,20 @@ ipv4_var_declaration
     :IPV4_TYPE var_name L_BLOCK IPV4 R_BLOCK
     ;
 
+array_var_declaration
+    :ARRAY_TYPE var_name L_BRACKET var_value (COMMA var_value)* R_BRACKET
+    ;
+
+
 var_declaration
     :default_var_declaration
     |text_var_declaration
     |number_var_declaration
     |boolean_var_declaration
     |ipv4_var_declaration
+    |array_var_declaration
     ;
+
+
 
 
