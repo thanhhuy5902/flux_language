@@ -9,6 +9,7 @@ op_level4: OP_EQUAL|OP_NOT_EQUAL|OP_LESS|OP_LESS_EQUAL|OP_GREATER|OP_GREATER_EQU
 op_level5: OP_NOT;
 
 
+
 numberic_expression
     :L_PAREN numberic_expression R_PAREN
     | numberic_expression op_level1 numberic_expression
@@ -19,19 +20,19 @@ numberic_expression
     | OP_MINUS numberic_expression
   ;
 
- logical_expression
-  : LPAREN logical_expression RPAREN
-    | logical_expression op_level3 logical_expression
-    | logical_expression op_level4 logical_expression
-    | OP_NOT logical_expression
-    | BOOLEAN
-    | get_variable
-    | function_call
-  ;
+logical_expression
+    :   L_PAREN logical_expression R_PAREN
+    |   logical_expression op_level3 logical_expression
+    |   logical_expression op_level4 logical_expression
+    |   OP_NOT logical_expression
+    |   BOOLEAN
+    |   get_variable
+    |   function_call
+    ;
 
   comparative_expression
-    : numberic_expression op_level3 numberic_expression
-    | logical_expression op_level4 logical_expression
+    : numberic_expression op_level4 numberic_expression
+    | logical_expression op_level3 logical_expression
     | comparative_expression op_level3 logical_expression
     | op_level5 L_PAREN comparative_expression R_PAREN
     ;
@@ -43,9 +44,9 @@ numberic_expression
     ;
 
   math_expression
-    : numberic_expression
+    : get_variable
+    | numberic_expression
     | logical_expression
-    | get_variable
     ;
 
   get_array_element
@@ -62,6 +63,6 @@ numberic_expression
     ;
 
    function_call
-    : VAR_IDENTIFIER LPAREN (math_expression(COMMA math_expression)*)? RPAREN
+    : VAR_IDENTIFIER L_PAREN (math_expression(COMMA math_expression)*)? R_PAREN
     ;
 

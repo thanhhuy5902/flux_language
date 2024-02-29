@@ -54,9 +54,9 @@ op_two_expression
   | OP_POW
   ;
 
-op_two_declaration
-
-    ;
+//op_two_declaration
+//
+//    ;
 
 string_var_declaration
     : TEXT_TYPE var_name L_BLOCK NEWLINE* TEXT NEWLINE* R_BLOCK

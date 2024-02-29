@@ -7,42 +7,48 @@ TEXT_TYPE: 'text';
 BOOLEAN: 'true' | 'false';
 BOOLEAN_TYPE: 'boolean';
 
-DIGIT: [0-9];
 
-NUMBER:
-	'-'? (
-		DIGIT+
-		| DIGIT+ '.' DIGIT+
-		| DIGIT+ '.' DIGIT+ SI_POSTFIX?
-		| DIGIT+ SI_POSTFIX?
-		| DIGIT+ SI_POSTFIX+ DIGIT?
-		| DIGIT+ SI_POSTFIX+ DIGIT+ SI_POSTFIX?
-		| DIGIT+ SI_POSTFIX+ DIGIT+ SI_POSTFIX+ DIGIT+
-	);
 
-UNIT: (NUMBER+ SI_POSTFIX) | (NUMBER+ SI_POSTFIX+ NUMBER);
-
-SI_POSTFIX:
-	'K'
-	| 'M'
-	| 'G'
-	| 'T'
-	| 'P'
-	| 'E'
-	| 'Z'
-	| 'Y'
-	| 'k'
-	| 'm'
-	| 'g'
-	| 't'
-	| 'p'
-	| 'e'
-	| 'z'
-	| 'y';
-
+NUMBER  : '-'? [0-9]+ ('.' [0-9]*)? ;
 NUMBER_TYPE: 'num';
 
+
+//NUMBER:
+//	'-'? (
+//		DIGIT+
+//		| DIGIT+ '.' DIGIT+
+//		| DIGIT+ '.' DIGIT+ SI_POSTFIX?
+//		| DIGIT+ SI_POSTFIX?
+//		| DIGIT+ SI_POSTFIX+ DIGIT?
+//		| DIGIT+ SI_POSTFIX+ DIGIT+ SI_POSTFIX?
+//		| DIGIT+ SI_POSTFIX+ DIGIT+ SI_POSTFIX+ DIGIT+
+//	);
+//
+//UNIT: (NUMBER+ SI_POSTFIX) | (NUMBER+ SI_POSTFIX+ NUMBER);
+//
+//SI_POSTFIX:
+//	'K'
+//	| 'M'
+//	| 'G'
+//	| 'T'
+//	| 'P'
+//	| 'E'
+//	| 'Z'
+//	| 'Y'
+//	| 'k'
+//	| 'm'
+//	| 'g'
+//	| 't'
+//	| 'p'
+//	| 'e'
+//	| 'z'
+//	| 'y';
+//
+//NUMBER_TYPE: 'num';
+
 NULL : 'na' ;
+
+DIGIT: [0-9];
 
 OCTET:
 	'0'
@@ -56,8 +62,6 @@ IPV4_TYPE: 'ipv4';
 ARRAY:(TEXT | NUMBER | BOOLEAN | IPV4)*;
 ARRAY_TYPE: 'array';
 
-VAR_IDENTIFIER: [a-z][a-zA-Z0-9]*;
-COMMON_IDENTIFIER: [a-zA-Z][a-zA-Z0-9]*; //class
 
 LOOP: 'loop';
 IF: 'if';
@@ -105,6 +109,9 @@ OP_SUB_ASSIGN: '-=';
 OP_MUL_ASSIGN: '*=';
 OP_DIV_ASSIGN: '/=';
 OP_MOD_ASSIGN: '%=';
+
+VAR_IDENTIFIER : [a-z][a-zA-Z0-9]* ;
+COMMON_IDENTIFIER : [A-Z][a-zA-Z0-9]* ;
 
 NEWLINE : '\r'? '\n' ;
 WS: [ \t\r\n]+ -> skip;
