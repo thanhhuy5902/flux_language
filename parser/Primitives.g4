@@ -1,63 +1,77 @@
 lexer grammar Primitives;
-//declare a variable type string: example text a {huy}
-TEXT: '"' ~["]* '"'
-    | '\''.*?'\'';
+// text = text;
+TEXT: '"' ~["]* '"' | '\'' .*? '\'';
+
 TEXT_TYPE: 'text';
 
 BOOLEAN: 'true' | 'false';
 BOOLEAN_TYPE: 'boolean';
 
+DIGIT: [0-9];
 
+NUMBER:
+	'-'? (
+		DIGIT+
+		| DIGIT+ '.' DIGIT+
+		| DIGIT+ '.' DIGIT+ SI_POSTFIX?
+		| DIGIT+ SI_POSTFIX?
+		| DIGIT+ SI_POSTFIX+ DIGIT?
+		| DIGIT+ SI_POSTFIX+ DIGIT+ SI_POSTFIX?
+		| DIGIT+ SI_POSTFIX+ DIGIT+ SI_POSTFIX+ DIGIT+
+	);
 
+UNIT: (NUMBER+ SI_POSTFIX) | (NUMBER+ SI_POSTFIX+ NUMBER);
 
-NUMBER: '-'? (
-            DIGIT+
-            | DIGIT+ '.' DIGIT+
-            | DIGIT+ '.' DIGIT+ SI_POSTFIX?
-            | DIGIT+ SI_POSTFIX?
-            | DIGIT + SI_POSTFIX + DIGIT?
-            | DIGIT + SI_POSTFIX + DIGIT + SI_POSTFIX?
-            | DIGIT + SI_POSTFIX + DIGIT + SI_POSTFIX + DIGIT+
-            );
-
-UNIT: (NUMBER + SI_POSTFIX) | (NUMBER + SI_POSTFIX + NUMBER);
-
-SI_POSTFIX: 'K' | 'M' | 'G' | 'T' | 'P' | 'E' | 'Z' | 'Y' | 'k' | 'm' | 'g' | 't' | 'p' | 'e' | 'z' | 'y';
+SI_POSTFIX:
+	'K'
+	| 'M'
+	| 'G'
+	| 'T'
+	| 'P'
+	| 'E'
+	| 'Z'
+	| 'Y'
+	| 'k'
+	| 'm'
+	| 'g'
+	| 't'
+	| 'p'
+	| 'e'
+	| 'z'
+	| 'y';
 
 NUMBER_TYPE: 'num';
 
+NULL : 'na' ;
 
-
-DIGIT
-    : [0-9]
-    ;
-OCTET
-    : '0'
-    | ([1-9] DIGIT?) // 1 to 99
-    | '1' DIGIT DIGIT // 100 to 199
-    | '2' [0-4] DIGIT // 200 to 249
-    | '25' [0-5] // 250 to 255
-    ;
+OCTET:
+	'0'
+	| ([1-9] DIGIT?) // 1 to 99
+	| '1' DIGIT DIGIT // 100 to 199
+	| '2' [0-4] DIGIT // 200 to 249
+	| '25' [0-5]; // 250 to 255
 IPV4: OCTET '.' OCTET '.' OCTET '.' OCTET;
 IPV4_TYPE: 'ipv4';
 
-ARRAY: (TEXT |NUMBER|BOOLEAN|IPV4)*;
+ARRAY:(TEXT | NUMBER | BOOLEAN | IPV4)*;
 ARRAY_TYPE: 'array';
 
-VAR_IDENTIFIER : [a-z][a-zA-Z0-9]*;
-COMMON_IDENTIFIER : [a-zA-Z][a-zA-Z0-9]*; //class
+VAR_IDENTIFIER: [a-z][a-zA-Z0-9]*;
+COMMON_IDENTIFIER: [a-zA-Z][a-zA-Z0-9]*; //class
 
-// declare array
+LOOP: 'loop';
+IF: 'if';
+ELSE: 'else';
+FUNC: 'fun';
+RETURN: 'return';
+RETURN_TYPE: '->';
 
-
-ARITHMETIC_OPERATOR: '+' | '-' | '*' | '/' | '%'| '^';
-LOGICAL_OPERATOR: 'xor'|'and' | 'or' | 'not' | '=' | '!=' | '<' | '>' | '<=' | '>=';
 L_BLOCK: '{';
 R_BLOCK: '}';
-L_PAR: '(';
-R_PAR: ')';
-L_BRACKET: '[';
-R_BRACKET: ']';
+L_PAREN: '(';
+R_PAREN: ')';
+L_SQUARE: '[';
+R_SQUARE: ']';
 DOT: '.';
 COLON: ':';
 SEMICOLON: ';';
@@ -82,4 +96,15 @@ OP_OR: 'or';
 OP_XOR: 'xor';
 OP_NOT: 'not';
 
+// operator --, = , +=, -=, *=, /=, %=
+OP_INCREMENT: '++';
+OP_DECREMENT: '--';
+//OP_ASSIGN: '=';
+OP_ADD_ASSIGN: '+=';
+OP_SUB_ASSIGN: '-=';
+OP_MUL_ASSIGN: '*=';
+OP_DIV_ASSIGN: '/=';
+OP_MOD_ASSIGN: '%=';
+
+NEWLINE : '\r'? '\n' ;
 WS: [ \t\r\n]+ -> skip;

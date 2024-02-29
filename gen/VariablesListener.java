@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // Generated from //wsl.localhost/Ubuntu-22.04/home/justintran/repos/flux_language/parser/Variables.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -96,4 +97,104 @@ public interface VariablesListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitVar_declaration(Variables.Var_declarationContext ctx);
+=======
+// Generated from /home/sooden/repos/flux_language/parser/Variables.g4 by ANTLR 4.13.1
+import org.antlr.v4.runtime.tree.ParseTreeListener;
+
+/**
+ * This interface defines a complete listener for a parse tree produced by
+ * {@link Variables}.
+ */
+public interface VariablesListener extends ParseTreeListener {
+	/**
+	 * Enter a parse tree produced by {@link Variables#varType}.
+	 * @param ctx the parse tree
+	 */
+	void enterVarType(Variables.VarTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Variables#varType}.
+	 * @param ctx the parse tree
+	 */
+	void exitVarType(Variables.VarTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link Variables#varName}.
+	 * @param ctx the parse tree
+	 */
+	void enterVarName(Variables.VarNameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Variables#varName}.
+	 * @param ctx the parse tree
+	 */
+	void exitVarName(Variables.VarNameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link Variables#varValue}.
+	 * @param ctx the parse tree
+	 */
+	void enterVarValue(Variables.VarValueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Variables#varValue}.
+	 * @param ctx the parse tree
+	 */
+	void exitVarValue(Variables.VarValueContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link Variables#defaultVarDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterDefaultVarDeclaration(Variables.DefaultVarDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Variables#defaultVarDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitDefaultVarDeclaration(Variables.DefaultVarDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link Variables#textVarDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterTextVarDeclaration(Variables.TextVarDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Variables#textVarDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitTextVarDeclaration(Variables.TextVarDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link Variables#numberVarDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterNumberVarDeclaration(Variables.NumberVarDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Variables#numberVarDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitNumberVarDeclaration(Variables.NumberVarDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link Variables#booleanVarDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterBooleanVarDeclaration(Variables.BooleanVarDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Variables#booleanVarDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitBooleanVarDeclaration(Variables.BooleanVarDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link Variables#ipv4VarDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterIpv4VarDeclaration(Variables.Ipv4VarDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Variables#ipv4VarDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitIpv4VarDeclaration(Variables.Ipv4VarDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link Variables#varDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterVarDeclaration(Variables.VarDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Variables#varDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitVarDeclaration(Variables.VarDeclarationContext ctx);
+>>>>>>> 4aa8e30 (Update 27/2/2024)
 }

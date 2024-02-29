@@ -45,6 +45,7 @@ AT
 WS
 
 rule names:
+<<<<<<< HEAD
 var_type
 var_name
 var_value
@@ -54,6 +55,17 @@ number_var_declaration
 boolean_var_declaration
 ipv4_var_declaration
 var_declaration
+=======
+varType
+varName
+varValue
+defaultVarDeclaration
+textVarDeclaration
+numberVarDeclaration
+booleanVarDeclaration
+ipv4VarDeclaration
+varDeclaration
+>>>>>>> 4aa8e30 (Update 27/2/2024)
 
 
 atn:
