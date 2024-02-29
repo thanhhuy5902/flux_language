@@ -45,18 +45,6 @@ op_one_declaration
   | NUMBER_TYPE var_name OP_DIV_ASSIGN NUMBE
   ;
 
-op_two_expression
-  : OP_ADD
-  | OP_SUB
-  | OP_MUL
-  | OP_DIV
-  | OP_MOD
-  | OP_POW
-  ;
-
-//op_two_declaration
-//
-//    ;
 
 string_var_declaration
     : TEXT_TYPE var_name L_BLOCK NEWLINE* TEXT NEWLINE* R_BLOCK

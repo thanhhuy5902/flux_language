@@ -234,8 +234,8 @@ func variablesParserInit() {
 		377, 378, 3, 36, 18, 6, 378, 380, 1, 0, 0, 0, 379, 371, 1, 0, 0, 0, 379,
 		375, 1, 0, 0, 0, 380, 383, 1, 0, 0, 0, 381, 379, 1, 0, 0, 0, 381, 382,
 		1, 0, 0, 0, 382, 37, 1, 0, 0, 0, 383, 381, 1, 0, 0, 0, 384, 385, 6, 19,
-		-1, 0, 385, 386, 3, 34, 17, 0, 386, 387, 3, 28, 14, 0, 387, 388, 3, 34,
-		17, 0, 388, 399, 1, 0, 0, 0, 389, 390, 3, 36, 18, 0, 390, 391, 3, 30, 15,
+		-1, 0, 385, 386, 3, 34, 17, 0, 386, 387, 3, 30, 15, 0, 387, 388, 3, 34,
+		17, 0, 388, 399, 1, 0, 0, 0, 389, 390, 3, 36, 18, 0, 390, 391, 3, 28, 14,
 		0, 391, 392, 3, 36, 18, 0, 392, 399, 1, 0, 0, 0, 393, 394, 3, 32, 16, 0,
 		394, 395, 5, 51, 0, 0, 395, 396, 3, 38, 19, 0, 396, 397, 5, 52, 0, 0, 397,
 		399, 1, 0, 0, 0, 398, 384, 1, 0, 0, 0, 398, 389, 1, 0, 0, 0, 398, 393,
@@ -244,8 +244,8 @@ func variablesParserInit() {
 		0, 405, 408, 1, 0, 0, 0, 406, 404, 1, 0, 0, 0, 406, 407, 1, 0, 0, 0, 407,
 		39, 1, 0, 0, 0, 408, 406, 1, 0, 0, 0, 409, 413, 5, 13, 0, 0, 410, 413,
 		3, 44, 22, 0, 411, 413, 3, 46, 23, 0, 412, 409, 1, 0, 0, 0, 412, 410, 1,
-		0, 0, 0, 412, 411, 1, 0, 0, 0, 413, 41, 1, 0, 0, 0, 414, 418, 3, 34, 17,
-		0, 415, 418, 3, 36, 18, 0, 416, 418, 3, 40, 20, 0, 417, 414, 1, 0, 0, 0,
+		0, 0, 0, 412, 411, 1, 0, 0, 0, 413, 41, 1, 0, 0, 0, 414, 418, 3, 40, 20,
+		0, 415, 418, 3, 34, 17, 0, 416, 418, 3, 36, 18, 0, 417, 414, 1, 0, 0, 0,
 		417, 415, 1, 0, 0, 0, 417, 416, 1, 0, 0, 0, 418, 43, 1, 0, 0, 0, 419, 420,
 		5, 13, 0, 0, 420, 421, 5, 53, 0, 0, 421, 422, 3, 34, 17, 0, 422, 423, 5,
 		54, 0, 0, 423, 45, 1, 0, 0, 0, 424, 425, 5, 13, 0, 0, 425, 426, 5, 55,
@@ -4707,10 +4707,10 @@ type IComparative_expressionContext interface {
 	// Getter signatures
 	AllNumberic_expression() []INumberic_expressionContext
 	Numberic_expression(i int) INumberic_expressionContext
-	Op_level3() IOp_level3Context
+	Op_level4() IOp_level4Context
 	AllLogical_expression() []ILogical_expressionContext
 	Logical_expression(i int) ILogical_expressionContext
-	Op_level4() IOp_level4Context
+	Op_level3() IOp_level3Context
 	Op_level5() IOp_level5Context
 	L_PAREN() antlr.TerminalNode
 	Comparative_expression() IComparative_expressionContext
@@ -4793,10 +4793,10 @@ func (s *Comparative_expressionContext) Numberic_expression(i int) INumberic_exp
 	return t.(INumberic_expressionContext)
 }
 
-func (s *Comparative_expressionContext) Op_level3() IOp_level3Context {
+func (s *Comparative_expressionContext) Op_level4() IOp_level4Context {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IOp_level3Context); ok {
+		if _, ok := ctx.(IOp_level4Context); ok {
 			t = ctx.(antlr.RuleContext)
 			break
 		}
@@ -4806,7 +4806,7 @@ func (s *Comparative_expressionContext) Op_level3() IOp_level3Context {
 		return nil
 	}
 
-	return t.(IOp_level3Context)
+	return t.(IOp_level4Context)
 }
 
 func (s *Comparative_expressionContext) AllLogical_expression() []ILogical_expressionContext {
@@ -4850,10 +4850,10 @@ func (s *Comparative_expressionContext) Logical_expression(i int) ILogical_expre
 	return t.(ILogical_expressionContext)
 }
 
-func (s *Comparative_expressionContext) Op_level4() IOp_level4Context {
+func (s *Comparative_expressionContext) Op_level3() IOp_level3Context {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IOp_level4Context); ok {
+		if _, ok := ctx.(IOp_level3Context); ok {
 			t = ctx.(antlr.RuleContext)
 			break
 		}
@@ -4863,7 +4863,7 @@ func (s *Comparative_expressionContext) Op_level4() IOp_level4Context {
 		return nil
 	}
 
-	return t.(IOp_level4Context)
+	return t.(IOp_level3Context)
 }
 
 func (s *Comparative_expressionContext) Op_level5() IOp_level5Context {
@@ -4956,7 +4956,7 @@ func (p *Variables) comparative_expression(_p int) (localctx IComparative_expres
 		}
 		{
 			p.SetState(386)
-			p.Op_level3()
+			p.Op_level4()
 		}
 		{
 			p.SetState(387)
@@ -4970,7 +4970,7 @@ func (p *Variables) comparative_expression(_p int) (localctx IComparative_expres
 		}
 		{
 			p.SetState(390)
-			p.Op_level4()
+			p.Op_level3()
 		}
 		{
 			p.SetState(391)
@@ -5228,9 +5228,9 @@ type IMath_expressionContext interface {
 	GetParser() antlr.Parser
 
 	// Getter signatures
+	Get_variable() IGet_variableContext
 	Numberic_expression() INumberic_expressionContext
 	Logical_expression() ILogical_expressionContext
-	Get_variable() IGet_variableContext
 
 	// IsMath_expressionContext differentiates from other interfaces.
 	IsMath_expressionContext()
@@ -5268,6 +5268,22 @@ func NewMath_expressionContext(parser antlr.Parser, parent antlr.ParserRuleConte
 
 func (s *Math_expressionContext) GetParser() antlr.Parser { return s.parser }
 
+func (s *Math_expressionContext) Get_variable() IGet_variableContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IGet_variableContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IGet_variableContext)
+}
+
 func (s *Math_expressionContext) Numberic_expression() INumberic_expressionContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
@@ -5298,22 +5314,6 @@ func (s *Math_expressionContext) Logical_expression() ILogical_expressionContext
 	}
 
 	return t.(ILogical_expressionContext)
-}
-
-func (s *Math_expressionContext) Get_variable() IGet_variableContext {
-	var t antlr.RuleContext
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IGet_variableContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
-		}
-	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IGet_variableContext)
 }
 
 func (s *Math_expressionContext) GetRuleContext() antlr.RuleContext {
@@ -5350,21 +5350,21 @@ func (p *Variables) Math_expression() (localctx IMath_expressionContext) {
 		p.EnterOuterAlt(localctx, 1)
 		{
 			p.SetState(414)
-			p.numberic_expression(0)
+			p.Get_variable()
 		}
 
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
 			p.SetState(415)
-			p.logical_expression(0)
+			p.numberic_expression(0)
 		}
 
 	case 3:
 		p.EnterOuterAlt(localctx, 3)
 		{
 			p.SetState(416)
-			p.Get_variable()
+			p.logical_expression(0)
 		}
 
 	case antlr.ATNInvalidAltNumber:
