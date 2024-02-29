@@ -2,12 +2,11 @@ parser grammar Math;
 options {
   tokenVocab = Primitives;
 }
-op_level1: OP_MULTIPLY|OP_DIVIDE|OP_MODULO|OP_POWER;
+op_level1: OP_MULTIPLY|OP_DIVIDE|OP_MOD|OP_POWER;
 op_level2: OP_PLUS|OP_MINUS;
 op_level3: OP_AND|OP_OR|OP_XOR;
-op_level4: OP_EQUAL|OP_NOT_EQUAL|OP_LESS|OP_LESS_OR_EQUAL|OP_GREATER|OP_GREATER_OR_EQUAL;
+op_level4: OP_EQUAL|OP_NOT_EQUAL|OP_LESS|OP_LESS_EQUAL|OP_GREATER|OP_GREATER_EQUAL;
 op_level5: OP_NOT;
-
 
 
 numberic_expression
