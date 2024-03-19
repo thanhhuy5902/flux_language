@@ -27,22 +27,16 @@ var_value
 op_one_expression
   : OP_INCREMENT
   | OP_DECREMENT
-  |OP_ADD_ASSIGN
-  |OP_SUB_ASSIGN
-  |OP_MUL_ASSIGN
-  |OP_DIV_ASSIGN
+
   ;
 
 op_one_declaration
   : var_name OP_INCREMENT
   | var_name OP_DECREMENT
+  | OP_INCREMENT var_name
+  | OP_DECREMENT var_name
   | NUMBER_TYPE var_name OP_INCREMENT
   | NUMBER_TYPE var_name OP_DECREMENT
-  | NUMBER_TYPE var_name OP_EQUAL NUMBER
-  | NUMBER_TYPE var_name OP_ADD_ASSIGN NUMBER
-  | NUMBER_TYPE var_name OP_SUB_ASSIGN NUMBER
-  | NUMBER_TYPE var_name OP_MUL_ASSIGN NUMBER
-  | NUMBER_TYPE var_name OP_DIV_ASSIGN NUMBE
   ;
 
 

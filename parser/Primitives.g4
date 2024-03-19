@@ -103,12 +103,7 @@ OP_NOT: 'not';
 // operator --, = , +=, -=, *=, /=, %=
 OP_INCREMENT: '++';
 OP_DECREMENT: '--';
-//OP_ASSIGN: '=';
-OP_ADD_ASSIGN: '+=';
-OP_SUB_ASSIGN: '-=';
-OP_MUL_ASSIGN: '*=';
-OP_DIV_ASSIGN: '/=';
-OP_MOD_ASSIGN: '%=';
+
 
 VAR_IDENTIFIER : [a-z][a-zA-Z0-9]* ;
 COMMON_IDENTIFIER : [A-Z][a-zA-Z0-9]* ;
