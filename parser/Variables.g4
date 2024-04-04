@@ -60,7 +60,7 @@ single_var_declaration
     : string_var_declaration
     | number_var_declaration
     | boolean_var_declaration
-    |var_type var_name L_BLOCK NEWLINE* R_BLOCK
+    | var_type var_name L_BLOCK NEWLINE* R_BLOCK
     ;
 
 array_var_declaration

@@ -1,55 +1,19 @@
 lexer grammar Primitives;
 // text = text;
 TEXT: '"' ~["]* '"' | '\'' .*? '\'';
-
 TEXT_TYPE: 'text';
 
 BOOLEAN: 'true' | 'false';
 BOOLEAN_TYPE: 'boolean';
 
 
-
 NUMBER  : '-'? [0-9]+ ('.' [0-9]*)? ;
 NUMBER_TYPE: 'num';
 
 
-//NUMBER:
-//	'-'? (
-//		DIGIT+
-//		| DIGIT+ '.' DIGIT+
-//		| DIGIT+ '.' DIGIT+ SI_POSTFIX?
-//		| DIGIT+ SI_POSTFIX?
-//		| DIGIT+ SI_POSTFIX+ DIGIT?
-//		| DIGIT+ SI_POSTFIX+ DIGIT+ SI_POSTFIX?
-//		| DIGIT+ SI_POSTFIX+ DIGIT+ SI_POSTFIX+ DIGIT+
-//	);
-//
-//UNIT: (NUMBER+ SI_POSTFIX) | (NUMBER+ SI_POSTFIX+ NUMBER);
-//
-//SI_POSTFIX:
-//	'K'
-//	| 'M'
-//	| 'G'
-//	| 'T'
-//	| 'P'
-//	| 'E'
-//	| 'Z'
-//	| 'Y'
-//	| 'k'
-//	| 'm'
-//	| 'g'
-//	| 't'
-//	| 'p'
-//	| 'e'
-//	| 'z'
-//	| 'y';
-//
-//NUMBER_TYPE: 'num';
-
 NULL : 'na' ;
 
 DIGIT: [0-9];
-
 OCTET:
 	'0'
 	| ([1-9] DIGIT?) // 1 to 99
@@ -58,9 +22,6 @@ OCTET:
 	| '25' [0-5]; // 250 to 255
 IPV4: OCTET '.' OCTET '.' OCTET '.' OCTET;
 IPV4_TYPE: 'ipv4';
-
-ARRAY:(TEXT | NUMBER | BOOLEAN | IPV4)*;
-ARRAY_TYPE: 'array';
 
 
 LOOP: 'loop';

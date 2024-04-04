@@ -1,4 +1,4 @@
-// Generated from //wsl.localhost/Ubuntu-22.04/home/sooden/repos/flux_language/parser/Math.g4 by ANTLR 4.13.1
+// Generated from //wsl.localhost/Ubuntu-22.04/home/justintran/repos/flux_language/parser/Math.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -39,4 +39,52 @@ public interface MathVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitOp_level5(Math.Op_level5Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link Math#numberic_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNumberic_expression(Math.Numberic_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Math#logical_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLogical_expression(Math.Logical_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Math#comparative_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitComparative_expression(Math.Comparative_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Math#get_variable}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGet_variable(Math.Get_variableContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Math#math_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMath_expression(Math.Math_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Math#get_array_element}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGet_array_element(Math.Get_array_elementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Math#get_child}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGet_child(Math.Get_childContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Math#function_call}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunction_call(Math.Function_callContext ctx);
 }
