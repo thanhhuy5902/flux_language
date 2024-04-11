@@ -1,57 +1,77 @@
 package vm
 
 import (
-	"github.com/thanhhuy5902/flux_language/parsing"
+	"context"
+	"github.com/thanhhuy5902/flux_language/codeobjects"
+	"github.com/thanhhuy5902/flux_language/core"
+	FluxIO "github.com/thanhhuy5902/flux_language/io"
+	fluxParser "github.com/thanhhuy5902/flux_language/parser"
 	"github.com/thanhhuy5902/flux_language/shared"
-	"github.com/thanhhuy5902/flux_language/vm/io"
-	"github.com/antlr4-go/antlr/v4"
 	"os"
 	"time"
 )
 
-type FluxVirutalMachine struct {
-	traverser parsing.FluxListener
+type FluxVirtualMachine struct {
+	parser   *fluxParser.FluxProgramParser
+	varTable *core.VarTable
 }
 
-func NewFluxVirtualMachine() *FluxVirutalMachine {
-	return &FluxVirutalMachine{}
+func NewFluxVirtualMachine() *FluxVirtualMachine {
+	return &FluxVirtualMachine{}
 
 }
 
-func (f *FluxVirutalMachine) Execute(params *shared.ExecutionParams) shared.ExecutionResult {
+func (f *FluxVirtualMachine) Execute(params *shared.ExecutionParams) shared.ExecutionResult {
+	errorCollector := FluxIO.NewBaseErrCollector()
 	elapsedTime := time.Now().UnixMilli()
 	absPath, err := os.Getwd()
 
 	if err != nil {
 		elapsedTime = time.Now().UnixMilli() - elapsedTime
 		return shared.ExecutionResult{
-			Error: err.Error(),
-			ElapsedTime: elapsedTime,
+			ErrorCollector: errorCollector,
+			ElapsedTime:    elapsedTime,
 		}
 	}
-	params.EntryPoint = absPath + "/" + params.EntryPoint
-	mainFileData, err := os.ReadFile(params.EntryPoint)
+	mainFileData := ""
+	if params.EntryPoint != "" {
+		params.EntryPoint = absPath + "/" + params.EntryPoint
+		mainFileBytes, err := os.ReadFile(params.EntryPoint)
 
-	if err != nil {
-		elapsedTime = time.Now().UnixMilli() - elapsedTime
-		return shared.ExecutionResult{
-			Error: err.Error(),
-			ElapsedTime: elapsedTime,
+		if err != nil {
+			elapsedTime = time.Now().UnixMilli() - elapsedTime
+			return shared.ExecutionResult{
+				ErrorCollector: errorCollector,
+				ElapsedTime:    elapsedTime,
+			}
 		}
+		mainFileData = string(mainFileBytes)
+	} else {
+		mainFileData = params.SourceCode
 	}
-	input := antlr.NewInputStream(string(mainFileData))
-	lexer := parsing.NewPrimitives(input)
-	parser := parsing.NewFlux(antlr.NewCommonTokenStream(lexer, 0))
-	var logger io.Logger = io.NewEmptyLogger()
+
+	var logger FluxIO.Logger = FluxIO.NewEmptyLogger()
 	if params.Verbose {
-		logger = io.NewBaseLogger()
+		logger = FluxIO.NewBaseLogger()
+
 	}
-	f.traverser = NewFluxTraverser(logger)
-	parser.AddParseListener(f.traverser)
-	parser.Program()
+	varTable := core.NewVarTable()
+
+	program := fluxParser.Parse(mainFileData, errorCollector, logger).GetProgram()
+
+	executionCtx := codeobjects.NewExecutionContext(context.TODO(), varTable)
+
+	except := program.Execute(executionCtx)
+
 	elapsedTime = time.Now().UnixMilli() - elapsedTime
 	return shared.ExecutionResult{
-		ElapsedTime: elapsedTime,
+		ElapsedTime:      elapsedTime,
+		ErrorCollector:   errorCollector,
+		RuntimeException: except,
 	}
 
+}
+
+func (f *FluxVirtualMachine) GetVarTable() *core.VarTable {
+	return f.varTable
 }
