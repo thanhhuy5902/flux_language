@@ -17,10 +17,10 @@ import (
 type FluxProgramParser struct {
 	logger          fluxIO.Logger
 	errorCollector  fluxIO.ErrorCollector
-	executionCtx    *fluxCodeObjects.ExecutionContext
 	program         *fluxCodeObjects.Program
 	stackStatements *utils.Stack[fluxCodeObjects.CodeObject]
 	resultStack     *utils.Stack[interface{}]
+	executionCtx    *fluxCodeObjects.ExecutionContext
 }
 
 func NewFluxProgramParser(logger fluxIO.Logger, errorCollector fluxIO.ErrorCollector) *FluxProgramParser {
@@ -183,6 +183,16 @@ func (f FluxProgramParser) EnterComparative_expression(c *parsing.Comparative_ex
 
 func (f FluxProgramParser) EnterGet_variable(c *parsing.Get_variableContext) {
 	f.logger.Infof("Entering get variable")
+	getVar := &fluxExpr.GetVar{
+		BaseStatement: &fluxCodeObjects.BaseStatement{
+			Line:     c.GetStart().GetLine(),
+			StartPos: c.GetStart().GetStart(),
+			EndPos:   0,
+		},
+		VarName: "",
+	}
+	f.stackStatements.Push(getVar)
+
 }
 
 func (f FluxProgramParser) EnterMath_expression(c *parsing.Math_expressionContext) {
@@ -191,6 +201,7 @@ func (f FluxProgramParser) EnterMath_expression(c *parsing.Math_expressionContex
 		BaseStatement: &fluxCodeObjects.BaseStatement{
 			Line:     c.GetStart().GetLine(),
 			StartPos: c.GetStart().GetStart(),
+			EndPos:   0,
 		},
 		NumericExpr: nil,
 	}
@@ -352,12 +363,13 @@ func (f FluxProgramParser) ExitNumberic_expression(c *parsing.Numberic_expressio
 					numExpr.Value = value
 				}
 
-			}else if c.Get_variable() != nil {
+			} else if c.Get_variable() != nil {
 				if !f.resultStack.IsEmpty() {
 					if _, ok := (*f.resultStack.Peek()).(*fluxExpr.GetVar); ok != false {
-						numExpr.GetVar= (*f.resultStack.Pop()).(*fluxExpr.GetVar)
+						numExpr.GetVar = (*f.resultStack.Pop()).(*fluxExpr.GetVar)
 					}
 				}
+
 			} else if len(c.AllNumberic_expression()) == 2 {
 				if !f.resultStack.IsEmpty() {
 					if _, ok := (*f.resultStack.Peek()).(*fluxExpr.NumericExpression); ok != false {
@@ -392,10 +404,11 @@ func (f FluxProgramParser) ExitComparative_expression(c *parsing.Comparative_exp
 
 func (f FluxProgramParser) ExitGet_variable(c *parsing.Get_variableContext) {
 	f.logger.Infof("Exiting get variable")
-	if f.stackStatements.Peek() != nil{
+	if f.stackStatements.Peek() != nil {
 		if _, ok := (*f.stackStatements.Peek()).(*fluxExpr.GetVar); ok != false {
 			getVar := (*f.stackStatements.Pop()).(*fluxExpr.GetVar)
 			getVar.VarName = c.GetText()
+			getVar.EndPos = c.GetStop().GetStop()
 			f.resultStack.Push(getVar)
 			// case 1: parent is a MathExpression
 			if _, ok := (*f.stackStatements.Peek()).(*fluxExpr.MathExpression); ok != false {
@@ -407,19 +420,24 @@ func (f FluxProgramParser) ExitGet_variable(c *parsing.Get_variableContext) {
 				numExpr := (*f.stackStatements.Peek()).(*fluxExpr.NumericExpression)
 				numExpr.GetVar = getVar
 			}
-	}
+		}
 	}
 }
 
 func (f FluxProgramParser) ExitMath_expression(c *parsing.Math_expressionContext) {
 	f.logger.Infof("Exiting math expression")
 	if f.stackStatements.Peek() != nil {
-		if c.Numberic_expression() != nil {
-			if (*f.resultStack.Peek()).(*fluxExpr.NumericExpression) != nil {
-				mathExpr := (*f.stackStatements.Pop()).(*fluxExpr.MathExpression)
-				mathExpr.NumericExpr = (*f.resultStack.Pop()).(*fluxExpr.NumericExpression)
-				f.resultStack.Push(mathExpr)
+		if _, ok := (*f.stackStatements.Peek()).(*fluxExpr.MathExpression); ok != false {
+			mathExpr := (*f.stackStatements.Pop()).(*fluxExpr.MathExpression)
+			// pop the result stack
+			if !f.resultStack.IsEmpty() {
+				if _, ok := (*f.resultStack.Peek()).(*fluxExpr.NumericExpression); ok != false {
+					mathExpr.NumericExpr = (*f.resultStack.Pop()).(*fluxExpr.NumericExpression)
+				} else if _, ok := (*f.resultStack.Peek()).(*fluxExpr.GetVar); ok != false {
+					mathExpr.GetVar = (*f.resultStack.Pop()).(*fluxExpr.GetVar)
+				}
 			}
+			f.resultStack.Push(mathExpr)
 		}
 	}
 }

@@ -17,10 +17,14 @@ func (p Program) Generate(ctx *GenerateContext) string {
 		mainBody += statement.Generate(ctx) + "\n"
 	}
 	return fmt.Sprintf(`
-		int main() {
-			%v
-			return 0;
-		}
+		#include <iostream>
+#include <string>
+#include <vector>
+
+int main() {
+%v
+return 0;
+}
 	`, mainBody)
 }
 
